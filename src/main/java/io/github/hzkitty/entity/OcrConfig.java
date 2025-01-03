@@ -1,4 +1,4 @@
-package org.hzkitty.entity;
+package io.github.hzkitty.entity;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package org.hzkitty.utils;
+package io.github.hzkitty.utils;
 
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;

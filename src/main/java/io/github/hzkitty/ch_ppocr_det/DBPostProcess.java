@@ -1,4 +1,4 @@
-package org.hzkitty.ch_ppocr_det;
+package io.github.hzkitty.ch_ppocr_det;
 
 import de.lighti.clipper.Clipper;
 import de.lighti.clipper.ClipperOffset;
@@ -57,7 +57,7 @@ public class DBPostProcess {
      * @param pred      模型输出预测，形状 [N, 1, H, W]，此处只处理 N=1 的情况
      * @param oriHeight 原始图像高度
      * @param oriWidth  原始图像宽度
-     * @return (boxes, scores)，其中 boxes 是 List<Point[]>
+     * @return 点位信息和得分
      */
     public ResultBundle call(float[][][][] pred, int oriHeight, int oriWidth) {
         // pred 的形状 [N, 1, H, W]，这里只处理单张图 pred[0][0][...]

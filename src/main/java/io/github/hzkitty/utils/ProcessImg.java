@@ -1,6 +1,6 @@
-package org.hzkitty.utils;
+package io.github.hzkitty.utils;
 
-import org.hzkitty.entity.Triple;
+import io.github.hzkitty.entity.Triple;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;

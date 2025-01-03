@@ -1,6 +1,7 @@
-package org.hzkitty.ch_ppocr_cls;
+package io.github.hzkitty.ch_ppocr_cls;
 
-import org.hzkitty.entity.Pair;
+import io.github.hzkitty.entity.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package org.hzkitty.cal_rec_boxes;
+package io.github.hzkitty.cal_rec_boxes;
 
-import org.hzkitty.entity.WordBoxResult;
-import org.hzkitty.entity.TupleResult;
-import org.hzkitty.entity.WordBoxInfo;
+import io.github.hzkitty.entity.TupleResult;
+import io.github.hzkitty.entity.WordBoxInfo;
+import io.github.hzkitty.entity.WordBoxResult;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 

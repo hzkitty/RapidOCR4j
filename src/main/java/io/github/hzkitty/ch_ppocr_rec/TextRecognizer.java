@@ -1,11 +1,11 @@
-package org.hzkitty.ch_ppocr_rec;
+package io.github.hzkitty.ch_ppocr_rec;
 
 import ai.onnxruntime.OrtException;
-import org.hzkitty.entity.Pair;
-import org.hzkitty.entity.OcrConfig;
-import org.hzkitty.entity.OrtInferConfig;
-import org.hzkitty.entity.TupleResult;
-import org.hzkitty.utils.OrtInferSession;
+import io.github.hzkitty.entity.OcrConfig;
+import io.github.hzkitty.entity.OrtInferConfig;
+import io.github.hzkitty.entity.Pair;
+import io.github.hzkitty.entity.TupleResult;
+import io.github.hzkitty.utils.OrtInferSession;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;

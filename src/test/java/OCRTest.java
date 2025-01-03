@@ -1,6 +1,6 @@
-import org.hzkitty.RapidOCR;
-import org.hzkitty.entity.OcrResult;
-import org.hzkitty.entity.ParamConfig;
+import io.github.hzkitty.RapidOCR;
+import io.github.hzkitty.entity.OcrResult;
+import io.github.hzkitty.entity.ParamConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.opencv.core.Mat;

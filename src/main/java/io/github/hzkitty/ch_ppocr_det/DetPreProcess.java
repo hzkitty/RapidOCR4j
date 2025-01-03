@@ -1,4 +1,4 @@
-package org.hzkitty.ch_ppocr_det;
+package io.github.hzkitty.ch_ppocr_det;
 
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
@@ -18,6 +18,8 @@ public class DetPreProcess {
 
     /**
      * 构造函数，传入限制边长与限制类型（"max"或"min"），默认值可自行定义
+     * @param limitSideLen 限制边长
+     * @param limitType 限制类型
      */
     public DetPreProcess(int limitSideLen, String limitType) {
         // 与 Python: mean=[0.5,0.5,0.5], std=[0.5,0.5,0.5], scale=1/255.0

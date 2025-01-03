@@ -1,10 +1,10 @@
-package org.hzkitty.ch_ppocr_det;
+package io.github.hzkitty.ch_ppocr_det;
 
 import ai.onnxruntime.OrtException;
-import org.hzkitty.entity.Pair;
-import org.hzkitty.entity.OcrConfig;
-import org.hzkitty.entity.OrtInferConfig;
-import org.hzkitty.utils.OrtInferSession;
+import io.github.hzkitty.entity.OcrConfig;
+import io.github.hzkitty.entity.Pair;
+import io.github.hzkitty.entity.OrtInferConfig;
+import io.github.hzkitty.utils.OrtInferSession;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 
@@ -54,10 +54,10 @@ public class TextDetector {
     }
 
     /**
-     * 对输入图像进行文本检测。
-     *
+     * 对输入图像进行文本检测
      * @param img 输入图像 (OpenCV Mat 或 np.ndarray对应的Java结构)
      * @return (检测到的文本框, 处理时间)，其中文本框可为 null 若无结果
+     * @throws OrtException 异常
      */
     public Pair<List<Point[]>, Double> call(Mat img) throws OrtException {
         long startTime = System.nanoTime(); // 记录开始时间 (纳秒)

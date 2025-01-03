@@ -1,11 +1,11 @@
-package org.hzkitty.utils;
+package io.github.hzkitty.utils;
 
 import ai.onnxruntime.*;
 import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtSession.Result;
 import ai.onnxruntime.OrtSession.SessionOptions;
 import ai.onnxruntime.providers.OrtCUDAProviderOptions;
-import org.hzkitty.entity.OrtInferConfig;
+import io.github.hzkitty.entity.OrtInferConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

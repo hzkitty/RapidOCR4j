@@ -1,4 +1,4 @@
-package org.hzkitty.utils;
+package io.github.hzkitty.utils;
 
 import java.io.File;
 import java.util.logging.Logger;

@@ -1,7 +1,7 @@
-package org.hzkitty.ch_ppocr_rec;
+package io.github.hzkitty.ch_ppocr_rec;
 
+import io.github.hzkitty.entity.WordBoxInfo;
 import lombok.Data;
-import org.hzkitty.entity.WordBoxInfo;
 
 import java.io.BufferedReader;
 import java.io.IOException;

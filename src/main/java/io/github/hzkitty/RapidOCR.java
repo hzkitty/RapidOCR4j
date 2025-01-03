@@ -1,13 +1,13 @@
-package org.hzkitty;
+package io.github.hzkitty;
 
-import org.hzkitty.entity.*;
-import org.hzkitty.cal_rec_boxes.CalRecBoxes;
-import org.hzkitty.ch_ppocr_cls.TextClassifier;
-import org.hzkitty.ch_ppocr_det.TextDetector;
-import org.hzkitty.ch_ppocr_rec.TextRecognizer;
-import org.hzkitty.utils.LoadImage;
-import org.hzkitty.utils.OpencvLoader;
-import org.hzkitty.utils.ProcessImg;
+import io.github.hzkitty.cal_rec_boxes.CalRecBoxes;
+import io.github.hzkitty.ch_ppocr_cls.TextClassifier;
+import io.github.hzkitty.ch_ppocr_det.TextDetector;
+import io.github.hzkitty.ch_ppocr_rec.TextRecognizer;
+import io.github.hzkitty.entity.*;
+import io.github.hzkitty.utils.LoadImage;
+import io.github.hzkitty.utils.OpencvLoader;
+import io.github.hzkitty.utils.ProcessImg;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
