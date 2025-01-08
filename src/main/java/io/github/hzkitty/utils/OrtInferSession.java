@@ -9,10 +9,14 @@ import io.github.hzkitty.entity.OrtInferConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
 
 public class OrtInferSession {
 
@@ -109,10 +113,32 @@ public class OrtInferSession {
      * @return 推理结果 (形状需根据模型而定)
      */
     public Object run(float[][][][] inputData) throws OrtException {
-        String inputName = this.getInputNames().get(0);
-        try (OnnxTensor tensor = OnnxTensor.createTensor(env, inputData)) {
+        int dim1 = inputData.length;
+        int dim2 = inputData[0].length;
+        int dim3 = inputData[0][0].length;
+        int dim4 = inputData[0][0][0].length;
+
+        // 一维数组的大小
+        int totalSize = dim1 * dim2 * dim3 * dim4;
+
+        // 使用流将多维数组转为一维数组
+        float[] dataArray = new float[totalSize];
+        int index = 0;
+        for (float[][][] item1 : inputData) {
+            for (float[][] item2 : item1) {
+                for (float[] item3 : item2) {
+                    System.arraycopy(item3, 0, dataArray, index, item3.length);
+                    index += item3.length;
+                }
+            }
+        }
+
+        long[] shape = new long[]{dim1, dim2, dim3, dim4};
+        String inputName = this.getInputNames().get(0);  // TODO 如果输入名称不会变，可以提前缓存
+
+        try (OnnxTensor tensor = OnnxTensor.createTensor(env, FloatBuffer.wrap(dataArray), shape)) {
             try (Result result = session.run(Collections.singletonMap(inputName, tensor))) {
-                // 获取输出张量的形状和数据
+                // 获取输出张量的值
                 OnnxTensor onnxValue = (OnnxTensor) result.get(0);
                 return onnxValue.getValue();
             }
