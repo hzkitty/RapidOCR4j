@@ -22,7 +22,7 @@ public class TextDetector {
     private final OrtInferSession infer;         // ONNX 推理会话
 
     /**
-     * 狗战术，初始化预处理、后处理和推理模块。
+     * 构造函数，初始化预处理、后处理和推理模块。
      *
      * @param detConfig 配置项
      */
