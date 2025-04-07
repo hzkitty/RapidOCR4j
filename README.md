@@ -74,6 +74,10 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 
 [OcrConfig想更深入了解，请移步config.yaml参数解释](https://rapidai.github.io/RapidOCRDocs/install_usage/api/RapidOCR/)
 
+## 待办：
+
+* 开启ndarray分支，使用ai.djl.ndarray进行numpy计算，显著提高图片处理速度
+
 ## 鸣谢
 
 - [RapidOCR](https://github.com/RapidAI/RapidOCR)
