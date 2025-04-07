@@ -66,7 +66,7 @@ public class LoadImage {
         if (img instanceof String) {
             String filePath = (String) img;
             verifyExist(filePath);
-            Mat mat = Imgcodecs.imread(filePath, Imgcodecs.IMREAD_UNCHANGED);
+            Mat mat = Imgcodecs.imread(filePath, Imgcodecs.IMREAD_COLOR);
             if (mat.empty()) {
                 throw new LoadImageError("无法识别或读取图片: " + filePath);
             }
@@ -74,7 +74,7 @@ public class LoadImage {
         } else if (img instanceof Path) {
             Path path = (Path) img;
             verifyExist(path.toString());
-            Mat mat = Imgcodecs.imread(path.toString(), Imgcodecs.IMREAD_UNCHANGED);
+            Mat mat = Imgcodecs.imread(path.toString(), Imgcodecs.IMREAD_COLOR);
             if (mat.empty()) {
                 throw new LoadImageError("无法识别或读取图片: " + path.toString());
             }
@@ -85,7 +85,7 @@ public class LoadImage {
         if (img instanceof byte[]) {
             byte[] bytes = (byte[]) img;
             MatOfByte mob = new MatOfByte(bytes);
-            Mat mat = Imgcodecs.imdecode(mob, Imgcodecs.IMREAD_UNCHANGED);
+            Mat mat = Imgcodecs.imdecode(mob, Imgcodecs.IMREAD_COLOR);
             if (mat.empty()) {
                 throw new LoadImageError("无法识别或读取二进制图片数据");
             }
