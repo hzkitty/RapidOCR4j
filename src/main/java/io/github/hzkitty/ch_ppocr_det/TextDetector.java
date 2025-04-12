@@ -87,7 +87,7 @@ public class TextDetector {
 
         // resultBundle 里包含 (boxes, scores)
         List<Point[]> dtBoxes = resultBundle.getBoxes();
-        List<Float> dtScores = resultBundle.getScores();
+//        List<Float> dtScores = resultBundle.getScores();
 
         // 过滤文本框
         List<Point[]> filtered = filterTagDetRes(dtBoxes, new int[]{oriHeight, oriWidth});

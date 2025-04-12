@@ -9,9 +9,7 @@ import io.github.hzkitty.entity.OrtInferConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.io.*;
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,6 +22,7 @@ public class OrtInferSession {
 
     private final OrtEnvironment env;
     private final OrtSession session;
+    private final String inputName;
 
     private boolean useCuda = false;
     private boolean useDirectML = false;
@@ -75,6 +74,7 @@ public class OrtInferSession {
                 InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(modelPath);
                 this.session = env.createSession(loadModel(inputStream), sessionOptions);
             }
+            inputName = this.getInputNames().get(0);
         } catch (OrtException e) {
             throw new RuntimeException(e);
         }
@@ -134,8 +134,6 @@ public class OrtInferSession {
         }
 
         long[] shape = new long[]{dim1, dim2, dim3, dim4};
-        String inputName = this.getInputNames().get(0);  // TODO 如果输入名称不会变，可以提前缓存
-
         try (OnnxTensor tensor = OnnxTensor.createTensor(env, FloatBuffer.wrap(dataArray), shape)) {
             try (Result result = session.run(Collections.singletonMap(inputName, tensor))) {
                 // 获取输出张量的值

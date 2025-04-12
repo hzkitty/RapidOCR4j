@@ -6,7 +6,10 @@ import org.opencv.imgproc.Imgproc;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,20 +66,26 @@ public class LoadImage {
      */
     private Mat loadImg(Object img) throws LoadImageError {
         // 1. 如果是字符串或 Path，认为是图片文件路径
-        if (img instanceof String) {
-            String filePath = (String) img;
+        if (img instanceof String || img instanceof Path) {
+            String filePath = img instanceof String ? (String) img : ((Path) img).toString();
             verifyExist(filePath);
-            Mat mat = Imgcodecs.imread(filePath, Imgcodecs.IMREAD_COLOR);
+            boolean containsChinese = filePath.matches(".*[\\u4e00-\\u9fa5]+.*");
+            Mat mat;
+            if (!containsChinese) {
+                mat = Imgcodecs.imread(filePath, Imgcodecs.IMREAD_COLOR);
+            } else {
+                // OpenCV 中的 imread 方法不支持中文路径，使用字节数组byte[]
+                byte[] bytes;
+                try {
+                    bytes = Files.readAllBytes(Paths.get(filePath));
+                } catch (IOException e) {
+                    throw new LoadImageError("无法识别或读取图片: " + filePath);
+                }
+                MatOfByte mob = new MatOfByte(bytes);
+                mat = Imgcodecs.imdecode(mob, Imgcodecs.IMREAD_COLOR);
+            }
             if (mat.empty()) {
                 throw new LoadImageError("无法识别或读取图片: " + filePath);
-            }
-            return mat;
-        } else if (img instanceof Path) {
-            Path path = (Path) img;
-            verifyExist(path.toString());
-            Mat mat = Imgcodecs.imread(path.toString(), Imgcodecs.IMREAD_COLOR);
-            if (mat.empty()) {
-                throw new LoadImageError("无法识别或读取图片: " + path.toString());
             }
             return mat;
         }

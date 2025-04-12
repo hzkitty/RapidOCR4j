@@ -26,7 +26,7 @@ Linux | ARMv8 (arm64 / aarch64)
 Windows | x86_32
 Windows | x86_64
 
-目前跨平台主要是opencv的限制，如果是其他平台，可在本机手动编译opencv4.8.1，把平台二进制文件路径传给opencvLibPath参数
+目前跨平台主要是opencv的限制，如果是其他平台，可在本机手动编译opencv4.6.0，把平台二进制文件路径传给opencvLibPath参数
 ```java
 OcrConfig ocrConfig = new OcrConfig();
 ocrConfig.Global.setOpencvLibPath("src/test/resources/libopencv_java481.so");
@@ -39,7 +39,7 @@ RapidOCR rapidOCR = RapidOCR.create(ocrConfig);
 <dependency>
     <groupId>io.github.hzkitty</groupId>
     <artifactId>rapidocr4j</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 使用示例
@@ -55,7 +55,7 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 <dependency>
     <groupId>io.github.hzkitty</groupId>
     <artifactId>rapidocr4j</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <exclusions>
       <exclusion>
         <groupId>com.microsoft.onnxruntime</groupId>
@@ -73,10 +73,6 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 ```
 
 [OcrConfig想更深入了解，请移步config.yaml参数解释](https://rapidai.github.io/RapidOCRDocs/install_usage/api/RapidOCR/)
-
-## 待办：
-
-* 开启ndarray分支，使用ai.djl.ndarray进行numpy计算，显著提高图片处理速度
 
 ## 鸣谢
 
