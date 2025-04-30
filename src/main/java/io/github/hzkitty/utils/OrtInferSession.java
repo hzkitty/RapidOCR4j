@@ -59,7 +59,7 @@ public class OrtInferSession {
 
             // 最后添加 CPU
             if (availableProviders.contains(OrtProvider.CPU)) {
-                sessionOptions.addCPU(true);
+                sessionOptions.addCPU(ortInferConfig.useArena);
                 logger.info("CPU EP added to session options.");
             }
 

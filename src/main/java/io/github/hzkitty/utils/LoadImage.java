@@ -4,7 +4,9 @@ import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -106,9 +108,8 @@ public class LoadImage {
             return (Mat) img;
         }
 
-        // 4. 如果已经是 Mat，则直接返回
+        // 4. 如果是 BufferedImage 转 Mat
         if (img instanceof BufferedImage) {
-            // 可扩展：BufferedImage 转 Mat
             return bufferedImageToMat((BufferedImage) img);
         }
 
@@ -275,37 +276,23 @@ public class LoadImage {
     }
 
     /**
-     * 将 BufferedImage 转为 Mat。这里的逻辑仅作示例，可根据实际业务调整。
-     *
+     * 将 BufferedImage 转为 Mat
      * @param bi 传入的 BufferedImage
      * @return 转换后的 Mat
      */
     private Mat bufferedImageToMat(BufferedImage bi) {
-        // 把 BufferedImage 当成三通道处理
-        int width = bi.getWidth();
-        int height = bi.getHeight();
-        Mat mat = new Mat(height, width, CvType.CV_8UC3);
-
-        // 将 pixel 拆分到 mat
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int pixel = bi.getRGB(x, y);
-                // ARGB 格式
-                int alpha = (pixel >> 24) & 0xFF;
-                int red = (pixel >> 16) & 0xFF;
-                int green = (pixel >> 8) & 0xFF;
-                int blue = (pixel) & 0xFF;
-
-                // 设置到 mat 中：OpenCV 默认顺序为 BGR
-                mat.put(y, x, new byte[]{(byte) blue, (byte) green, (byte) red});
-            }
+        // 先转换为 TYPE_3BYTE_BGR 类型（OpenCV 默认是 BGR）
+        if (bi.getType() != BufferedImage.TYPE_3BYTE_BGR) {
+            BufferedImage convertedImg = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+            Graphics2D g = convertedImg.createGraphics();
+            g.drawImage(bi, 0, 0, null);
+            g.dispose();
+            bi = convertedImg;
         }
-        // 如果图像是二值模式，转换为灰度图
-        if (mat.channels() == 1) {
-            Mat grayImg = new Mat();
-            Imgproc.cvtColor(mat, grayImg, Imgproc.COLOR_BGR2GRAY);
-            return grayImg;  // 返回灰度图
-        }
+
+        byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+        Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
+        mat.put(0, 0, data);
         return mat;
     }
 

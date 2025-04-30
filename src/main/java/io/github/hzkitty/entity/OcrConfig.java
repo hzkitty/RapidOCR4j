@@ -46,7 +46,7 @@ public class OcrConfig {
         public float unclipRatio = 1.6f; // 非极大值抑制后的扩展比例
         public boolean useDilation = true; // 是否使用膨胀操作
         public String scoreMode = "fast"; // 评分模式
-        public boolean useArena = true; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认开启）
+        public boolean useArena = false; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认关闭）
     }
 
     // 分类模块配置类
@@ -61,7 +61,7 @@ public class OcrConfig {
         public int clsBatchNum = 1; // 分类批量处理数
         public float clsThresh = 0.9f; // 分类阈值
         public String[] labelList = {"0", "180"}; // 分类标签列表
-        public boolean useArena = true; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认开启）
+        public boolean useArena = false; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认关闭）
     }
 
     // 识别模块配置类
@@ -74,7 +74,7 @@ public class OcrConfig {
         public String modelPath = "models/ch_PP-OCRv4_rec_infer.onnx"; // 模型路径
         public int[] recImgShape = {3, 48, 320}; // 识别输入图像形状
         public int recBatchNum = 1; // 识别批量处理数
-        public boolean useArena = true; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认开启）
+        public boolean useArena = false; // arena内存池的扩展策略（速度有提升，但内存会剧增，且持续占用，不释放，默认关闭）
         public String recKeysPath; // 字典路径，如果不设置，默认从模型获取
     }
 }
