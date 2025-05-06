@@ -32,8 +32,8 @@ public class OrtInferSession {
         logger.info("Initializing OrtInferSession...");
 
         String modelPath = ortInferConfig.getModelPath();
-        this.useCuda = ortInferConfig.isUseCuda();
-        this.useDirectML = ortInferConfig.isUseDml();
+        this.useCuda = ortInferConfig.useCuda;
+        this.useDirectML = ortInferConfig.useDml;
 
         // 1、创建 ONNX Runtime 环境
         this.env = OrtEnvironment.getEnvironment("OrtInferSessionEnv");
@@ -43,17 +43,17 @@ public class OrtInferSession {
             SessionOptions sessionOptions = initSessionOptions(ortInferConfig);
             EnumSet<OrtProvider> availableProviders = env.getAvailableProviders();
             if (this.useCuda && availableProviders.contains(OrtProvider.CUDA)) {
-                OrtCUDAProviderOptions providerOptions = new OrtCUDAProviderOptions(0);
+                OrtCUDAProviderOptions providerOptions = new OrtCUDAProviderOptions(ortInferConfig.getDeviceId());
                 // kNextPowerOfTwo（默认值）以 2 的幂数扩展，而 kSameAsRequested 每次扩展的大小与分配请求的大小相同。
                 providerOptions.add("arena_extend_strategy", "kNextPowerOfTwo");
                 providerOptions.add("cudnn_conv_algo_search", "EXHAUSTIVE");
                 providerOptions.add("do_copy_in_default_stream", "1");
                 sessionOptions.addCUDA(providerOptions);
-                logger.info("Requested CUDA EP added to session options.");
+                logger.info("Requested CUDA EP added to session options, deviceId: {}.", ortInferConfig.getDeviceId());
             }
 
             if (this.useDirectML && availableProviders.contains(OrtProvider.DIRECT_ML)) {
-                sessionOptions.addDirectML(0);
+                sessionOptions.addDirectML(ortInferConfig.getDeviceId());
                 logger.info("Requested DirectML EP - might not be supported in certain Java packages.");
             }
 

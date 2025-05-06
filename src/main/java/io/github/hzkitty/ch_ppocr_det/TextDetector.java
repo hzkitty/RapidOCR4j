@@ -44,12 +44,13 @@ public class TextDetector {
 
         // 初始化推理会话
         OrtInferConfig ortInferConfig = new OrtInferConfig();
-        ortInferConfig.setIntraOpNumThreads(detConfig.getIntraOpNumThreads());
-        ortInferConfig.setInterOpNumThreads(detConfig.getInterOpNumThreads());
-        ortInferConfig.setUseCuda(detConfig.isUseArena());
-        ortInferConfig.setUseDml(detConfig.isUseDml());
-        ortInferConfig.setModelPath(detConfig.getModelPath());
-        ortInferConfig.setUseArena(detConfig.isUseArena());
+        ortInferConfig.setIntraOpNumThreads(detConfig.intraOpNumThreads);
+        ortInferConfig.setInterOpNumThreads(detConfig.interOpNumThreads);
+        ortInferConfig.setUseCuda(detConfig.useCuda);
+        ortInferConfig.setDeviceId(detConfig.deviceId);
+        ortInferConfig.setUseDml(detConfig.useDml);
+        ortInferConfig.setModelPath(detConfig.modelPath);
+        ortInferConfig.setUseArena(detConfig.useArena);
         this.infer = new OrtInferSession(ortInferConfig);
     }
 

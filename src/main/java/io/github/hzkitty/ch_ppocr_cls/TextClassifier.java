@@ -46,12 +46,13 @@ public class TextClassifier {
 
         // 初始化推理会话
         OrtInferConfig ortInferConfig = new OrtInferConfig();
-        ortInferConfig.setIntraOpNumThreads(clsConfig.getIntraOpNumThreads());
-        ortInferConfig.setInterOpNumThreads(clsConfig.getInterOpNumThreads());
-        ortInferConfig.setUseCuda(clsConfig.isUseArena());
-        ortInferConfig.setUseDml(clsConfig.isUseDml());
-        ortInferConfig.setModelPath(clsConfig.getModelPath());
-        ortInferConfig.setUseArena(clsConfig.isUseArena());
+        ortInferConfig.setIntraOpNumThreads(clsConfig.intraOpNumThreads);
+        ortInferConfig.setInterOpNumThreads(clsConfig.interOpNumThreads);
+        ortInferConfig.setUseCuda(clsConfig.useCuda);
+        ortInferConfig.setDeviceId(clsConfig.deviceId);
+        ortInferConfig.setUseDml(clsConfig.useDml);
+        ortInferConfig.setModelPath(clsConfig.modelPath);
+        ortInferConfig.setUseArena(clsConfig.useArena);
         this.inferSession = new OrtInferSession(ortInferConfig);
     }
 

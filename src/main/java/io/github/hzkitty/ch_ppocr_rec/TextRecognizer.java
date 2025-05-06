@@ -30,12 +30,13 @@ public class TextRecognizer {
     public TextRecognizer(OcrConfig.RecConfig recConfig) {
         // 初始化推理会话
         OrtInferConfig ortInferConfig = new OrtInferConfig();
-        ortInferConfig.setIntraOpNumThreads(recConfig.getIntraOpNumThreads());
-        ortInferConfig.setInterOpNumThreads(recConfig.getInterOpNumThreads());
-        ortInferConfig.setUseCuda(recConfig.isUseArena());
-        ortInferConfig.setUseDml(recConfig.isUseDml());
-        ortInferConfig.setModelPath(recConfig.getModelPath());
-        ortInferConfig.setUseArena(recConfig.isUseArena());
+        ortInferConfig.setIntraOpNumThreads(recConfig.intraOpNumThreads);
+        ortInferConfig.setInterOpNumThreads(recConfig.interOpNumThreads);
+        ortInferConfig.setUseCuda(recConfig.useCuda);
+        ortInferConfig.setDeviceId(recConfig.deviceId);
+        ortInferConfig.setUseDml(recConfig.useDml);
+        ortInferConfig.setModelPath(recConfig.modelPath);
+        ortInferConfig.setUseArena(recConfig.useArena);
         // 1. 创建 ONNX 推理会话
         this.session = new OrtInferSession(ortInferConfig);
 

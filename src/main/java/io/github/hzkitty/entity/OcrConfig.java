@@ -36,6 +36,7 @@ public class OcrConfig {
         public int intraOpNumThreads = -1; // 单线程操作线程数
         public int interOpNumThreads = -1; // 多线程操作线程数
         public boolean useCuda = false; // 是否使用 CUDA
+        public int deviceId = 0; // 显卡编号
         public boolean useDml = false; // 是否使用 DML
         public String modelPath = "models/ch_PP-OCRv4_det_infer.onnx"; // 模型路径
         public int limitSideLen = 736; // 限制边长
@@ -55,6 +56,7 @@ public class OcrConfig {
         public int intraOpNumThreads = -1; // 单线程操作线程数
         public int interOpNumThreads = -1; // 多线程操作线程数
         public boolean useCuda = false; // 是否使用 CUDA
+        public int deviceId = 0; // 显卡编号
         public boolean useDml = false; // 是否使用 DML
         public String modelPath = "models/ch_ppocr_mobile_v2.0_cls_infer.onnx"; // 模型路径
         public int[] clsImageShape = {3, 48, 192}; // 分类输入图像形状
@@ -70,6 +72,7 @@ public class OcrConfig {
         public int intraOpNumThreads = -1; // 单线程操作线程数
         public int interOpNumThreads = -1; // 多线程操作线程数
         public boolean useCuda = false; // 是否使用 CUDA
+        public int deviceId = 0; // 显卡编号
         public boolean useDml = false; // 是否使用 DML
         public String modelPath = "models/ch_PP-OCRv4_rec_infer.onnx"; // 模型路径
         public int[] recImgShape = {3, 48, 320}; // 识别输入图像形状
