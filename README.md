@@ -74,7 +74,7 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 
 [OcrConfig想更深入了解，请移步config.yaml参数解释](https://rapidai.github.io/RapidOCRDocs/install_usage/api/RapidOCR/)
 
->  安卓版本。使用 [RapidOcrAndroid4j](https://github.com/hzkitty/RapidOcrAndroid4j)
+>  安卓版本。使用 [RapidOCR4j-Android](https://github.com/hzkitty/RapidOCR4j-Android)
 
 
 ## 鸣谢
