@@ -6,7 +6,7 @@
 
     <groupId>io.github.hzkitty</groupId>
     <artifactId>rapidocr4j</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>rapidocr4j</name>

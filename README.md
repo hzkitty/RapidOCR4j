@@ -39,7 +39,7 @@ RapidOCR rapidOCR = RapidOCR.create(ocrConfig);
 <dependency>
     <groupId>io.github.hzkitty</groupId>
     <artifactId>rapidocr4j</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 使用示例
@@ -55,7 +55,7 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 <dependency>
     <groupId>io.github.hzkitty</groupId>
     <artifactId>rapidocr4j</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <exclusions>
       <exclusion>
         <groupId>com.microsoft.onnxruntime</groupId>
@@ -73,6 +73,9 @@ OcrResult ocrResult = rapidOCR.run("src/test/resources/text_01.png");
 ```
 
 [OcrConfig想更深入了解，请移步config.yaml参数解释](https://rapidai.github.io/RapidOCRDocs/install_usage/api/RapidOCR/)
+
+>  安卓版本。使用 [RapidOcrAndroid4j](https://github.com/hzkitty/RapidOcrAndroid4j)
+
 
 ## 鸣谢
 
