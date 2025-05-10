@@ -66,15 +66,18 @@ public class DBPostProcess {
         int h = probMap.length;       // H
         int w = probMap[0].length;    // W
 
-        // 1. 生成二值化掩码 segmentation = pred>thresh
-        Mat mask = new Mat(h, w, CvType.CV_8UC1);
+        // 1. 生成二值化掩码 segmentation = pred > thresh
+        byte[] maskData = new byte[h * w];
+        int idx = 0;
         for (int row = 0; row < h; row++) {
             for (int col = 0; col < w; col++) {
                 float val = probMap[row][col];
-                // 若 > thresh，则为1，否则0
-                mask.put(row, col, (val > this.thresh) ? 255 : 0);
+                maskData[idx++] = (byte) ((val > this.thresh) ? 255 : 0);
             }
         }
+        // 一次性填充到 OpenCV 的 Mat 中，避免多次 JNI 调用
+        Mat mask = new Mat(h, w, CvType.CV_8UC1);
+        mask.put(0, 0, maskData);
 
         // 2. 若使用了膨胀操作，则在mask上执行dilate
         if (this.dilationKernel != null) {
