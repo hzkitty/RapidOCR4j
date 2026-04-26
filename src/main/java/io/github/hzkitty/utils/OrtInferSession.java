@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
 
-public class OrtInferSession {
+public class OrtInferSession implements AutoCloseable {
 
     private static final Logger logger = LoggerFactory.getLogger(OrtInferSession.class);
 
@@ -210,6 +210,16 @@ public class OrtInferSession {
             return buffer.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void close() throws OrtException {
+        if (session != null) {
+            session.close();
+        }
+        if (env != null) {
+            env.close();
         }
     }
 

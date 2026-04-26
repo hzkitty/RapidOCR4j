@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class RapidOCR {
+public class RapidOCR implements AutoCloseable {
     private final float textScore;          // 过滤阈值
     private final int minHeight;            // 最小高度
     private final float widthHeightRatio;   // 宽高比
@@ -562,6 +562,19 @@ public class RapidOCR {
 
         // 4. 返回修正后的坐标（dtBoxes 已经就地修改）
         return dtBoxes;
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (textDet != null) {
+            textDet.close();
+        }
+        if (textCls != null) {
+            textCls.close();
+        }
+        if (textRec != null) {
+            textRec.close();
+        }
     }
 
 }
