@@ -14,7 +14,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class TextRecognizer {
+public class TextRecognizer implements AutoCloseable {
 
     private final OrtInferSession session;
     private final CTCLabelDecode postprocessOp;
@@ -223,6 +223,13 @@ public class TextRecognizer {
         }
 
         return paddingIm;
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (session != null) {
+            session.close();
+        }
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * 文本检测
  */
-public class TextDetector {
+public class TextDetector implements AutoCloseable {
 
     private final String limitType;        // "min" / "max" 等限制类型
     private final int limitSideLen;        // 限制边长
@@ -211,6 +211,13 @@ public class TextDetector {
         double dx = p2.x - p1.x;
         double dy = p2.y - p1.y;
         return Math.hypot(dx, dy);
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (infer != null) {
+            infer.close();
+        }
     }
 
 }

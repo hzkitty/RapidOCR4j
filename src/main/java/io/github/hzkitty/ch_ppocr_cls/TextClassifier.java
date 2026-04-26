@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 对输入图像进行文字方向分类，并在需要时旋转图像。
  */
-public class TextClassifier {
+public class TextClassifier implements AutoCloseable {
 
     // 分类输入图像的形状 [channels, height, width]
     private final int[] clsImageShape;
@@ -272,6 +272,13 @@ public class TextClassifier {
         }
 
         return chwArray;
+    }
+
+    @Override
+    public void close() throws Exception {
+        if (inferSession != null) {
+            inferSession.close();
+        }
     }
 
 }
